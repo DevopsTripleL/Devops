@@ -1,15 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
-import {useState} from "react";
+import logo from './logo.svg'
+import './App.css'
+import React, { useState } from 'react'
 
-
-
-function App() {
-
-  const [count, setCount] = useState(0);
-  let i = 0;
+function App () {
+  const [count, setCount] = useState(0)
+  let i = 0
   function Count () {
-    i++;
+    i++
     setCount(i)
   }
 
@@ -32,7 +29,7 @@ function App() {
         </a>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
