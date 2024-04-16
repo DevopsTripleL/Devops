@@ -1,10 +1,7 @@
 module.exports = {
   root: true,
-  extends: ['@react-native', 'prettier'],
-  env: {
-    'react-native/react-native': true
-  },
-  plugins: ['import', 'react-native', '@typescript-eslint', 'prettier'],
+  extends: ['prettier'],
+  plugins: ['import', '@typescript-eslint', 'prettier'],
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.ts', '.tsx', '.js', '.jsx'] }],
     'no-use-before-define': 'off',
