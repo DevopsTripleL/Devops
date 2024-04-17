@@ -1,0 +1,42 @@
+name: Update Version on Release
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if the push includes a release tag
+        id: check_release_tag
+        run: echo "::set-output name=is_release_tag::$(git tag --contains ${{ github.sha }} | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' || true)"
+
+      - name: Extract version from tag
+        if: steps.check_release_tag.outputs.is_release_tag
+        id: extract_version
+        run: echo "::set-output name=version::$(git describe --tags --abbrev=0)"
+
+      - name: Update package.json with new version
+        if: steps.extract_version.outputs.version
+        run: |
+          echo "Updating package.json version to ${VERSION}"
+          npm version ${VERSION} --no-git-tag-version
+          echo "Updated package.json version to ${VERSION}"
+        env:
+          VERSION: ${{ steps.extract_version.outputs.version }}
+
+      - name: Get latest commit reference
+        id: get_commit_ref
+        run: echo "::set-output name=commit_ref::$(git rev-parse HEAD)"
+
+      - name: Update package.json with new version and commit reference
+        if: steps.extract_version.outputs.version
+        run: |
+          echo "Updating package.json version to ${VERSION} with commit ${COMMIT_REF}"
+          npm version ${VERSION} --no-git-tag-version
+          echo "Updated package.json version to ${VERSION} with commit ${COMMIT_REF}"
+        env:
+          VERSION: ${{ steps.extract_version.outputs.version }}
+          COMMIT_REF: ${{ steps.get_commit_ref.outputs.commit_ref }}
