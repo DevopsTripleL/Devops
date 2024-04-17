@@ -1,8 +1,6 @@
 name: Lint
 
 on:
-  push:
-    branches: [ "develop" ]
   pull_request:
     branches: [ "master", "develop" ]
 
@@ -20,6 +18,9 @@ jobs:
 
       - name: Code Checkout
         uses: actions/checkout@v2
+
+      - name: Delete nodesModules
+        run: rm -rf node_modules
 
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
