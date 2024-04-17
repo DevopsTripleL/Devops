@@ -39,8 +39,7 @@ jobs:
 
       - name: Bump version and push with tag
         run: |
-          # Bump version in package.json (ou tout autre fichier où vous stockez votre version)
           npm version patch --no-git-tag-version
           VERSION=$(node -p "require('./package.json').version")
           git tag -a "v${VERSION}" -m "Release version ${VERSION}"
-          git push origin "v${VERSION}"
+          git push origin "v${VERSION}""
