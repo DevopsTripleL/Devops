@@ -48,5 +48,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PUSH_TOKEN }}
         with:
-          tag_name:  ${{ github.event.head_commit.message }}
+          tag_name: ${{ github.event.head_commit.message }}
           release_name: Release ${{ github.event.head_commit.message }}
