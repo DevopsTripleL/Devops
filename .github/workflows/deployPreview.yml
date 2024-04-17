@@ -39,21 +39,16 @@ jobs:
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
 
-      - name: Comment on PR with Vercel Deployment URL
-        uses: actions/github-script@v4
+      - name: Comment URL to PR
+        env:
+          DEPLOYMENT_URL: ${{needs.Deploy-Preview.outputs.deploymentUrl}}
+        uses: actions/github-script@v6
+        id: my-script
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const github = require('@actions/github');
-            const context = github.context;
-            
-            const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
-            
-            const url = process.env.vercel_url;
-            
-            octokit.issues.createComment({
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
-              body: `Preview deployed at: ${url}`
-            });
+              body: "Deployed at ${{env.DEPLOYMENT_URL}}"
+            })
