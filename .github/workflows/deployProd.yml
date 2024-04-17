@@ -37,6 +37,11 @@ jobs:
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
 
+      - name: Set up Git
+        run: |
+          git config --global user.email "remi.lecas@ecole-isitech.fr"
+          git config --global user.name "RemiLecas"
+
       - name: Bump version and push with tag
         run: |
           npm version patch --no-git-tag-version
