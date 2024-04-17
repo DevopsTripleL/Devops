@@ -37,13 +37,13 @@ jobs:
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
 
-      - name: Bump version and push with tag
-        run: |
-          npm version patch --no-git-tag-version
-          VERSION=$(node -p "require('./package.json').version")
-          git config --global user.email "remi.lecas@ecole-isitech.fr"
-          git config --global user.name "RemiLecas"
-          git tag -a "v${VERSION}" -m "Release version ${VERSION}"
-          git push origin "v${VERSION}" --follow-tags
+      - name: Bump version and push tag
+        uses: jaumann/github-bumpversion-action@v0.0.7
         env:
-          GITHUB_TOKEN: ${{ secrets.PUSH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tags: true
+
