@@ -8,7 +8,7 @@ function App () {
 
   return (
     <div className="App">
-      Giga prout :)
+      prout :)
 
       <div>
         {(process.env.NODE_ENV === 'production') &&
