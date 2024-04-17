@@ -1,2 +1,42 @@
-.App {
+.App-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    margin: auto;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.App-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.App-form input[type="text"]:focus {
+    border-color: #495057;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.App-form button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px;
+    margin-top: 10px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.App-form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.App-form button[type="submit"]:active {
+    background-color: #003d80;
 }
