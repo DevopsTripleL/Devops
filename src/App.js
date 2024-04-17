@@ -6,7 +6,6 @@ import Form from './FormPage/Form'
 import Success from './SuccessPage/Success'
 
 function App() {
-
   return (
     <div className="App">
       <Router>
