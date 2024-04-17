@@ -42,13 +42,13 @@ jobs:
           DEPLOYMENT_URL=$(vercel --token=${{ secrets.VERCEL_TOKEN }} --json output | jq -r '.[0].url')
           echo "::set-env name=DEPLOYMENT_URL::$DEPLOYMENT_URL"
 
-#  Add-Comment:
-#    runs-on: ubuntu-latest
-#    needs: Deploy-Preview
-#    permissions:
-#      issues: write
-#      pull-requests: write
-#    steps:
+  Add-Comment:
+    runs-on: ubuntu-latest
+    needs: Deploy-Preview
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
       - name: Comment URL to PR
         env:
           DEPLOYMENT_URL: ${{env.DEPLOYMENT_URL}}
