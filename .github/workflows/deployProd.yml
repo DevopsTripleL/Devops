@@ -52,5 +52,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PUSH_TOKEN }}
         with:
-          tag_name:  v${{ steps.commit_sha.outputs.commit_sha }}
-          release_name: Release ${{ steps.commit_sha.outputs.commit_sha }}
+          tag_name:  ${{ github.event.head_commit.message }}
+          release_name: Release ${{ github.event.head_commit.message }}
