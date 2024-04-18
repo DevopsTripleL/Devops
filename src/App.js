@@ -3,7 +3,7 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import Form from './FormPage/Form'
-import Success from './SuccessPage/Success'
+import Success from './SuccessPage/Success';
 
 function App() {
   return (
